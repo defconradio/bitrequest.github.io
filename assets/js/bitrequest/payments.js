@@ -1535,7 +1535,7 @@ function get_payment(ccrateeuro, ccapi) {
                     <div class='button openwallet' id='openwallet' data-currency='" + request.payment + "'><span class='icon-folder-open'>" + wallet_text + "</span></div>" + lightning_btn +
         "</div>\
             </div>",
-        powered_by = "<div class='poweredby'>Powered by: <a href='https://www.bitrequest.io' target='_blank'>Bitrequest</a></div>",
+        powered_by = "<div class='poweredby'>Powered by: <a href='https://defconradio.github.io/bitrequest.github.io/' target='_blank'>Cointigo</a></div>",
         bottom_content = request.isrequest ? payment_methods : share_form,
         qr_html = "<div id='qrcode' class='qrcode'><canvas width='256' height='256'></canvas></div>" + crypto_icon,
         lightning_qr = (request.payment === "bitcoin") ? "<div id='qrcode_lnd' class='qrcode'><canvas width='256' height='256'></canvas></div><img src='assets/img/logos/btc-lnd.png' class='cmc_icon' id='lnd_icon'><img src='" + c_icons("phone-icon") + "' class='cmc_icon' id='phone_icon'>" : "",
