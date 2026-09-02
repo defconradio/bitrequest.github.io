@@ -417,7 +417,8 @@ function load_request(pass) {
         if (coin_data) {
             const is_erc20 = coin_data.erc20 === true,
                 request_start_time = now_utc(),
-                exact = exists(url_params.exact);
+                exact = exists(url_params.exact),
+                addressqr = url_params.addressqr === "true" || url_params.addressqr === "1";
             // Start building request object
             request = {
                     "received": false,
@@ -432,6 +433,7 @@ function load_request(pass) {
                 helper = {
                     exact,
                     contactform,
+                    addressqr,
                     "lnd": false,
                     "lnd_status": false,
                     "l1_status": false,
@@ -1682,8 +1684,10 @@ function generate_payment_qr(payment, address, amount, lbl, msg) {
         label = lbl || $("#paymentdialog input#requestname").val(),
         message = msg || $("#paymentdialog input#requesttitle").val(),
         is_zero = number === 0 || isNaN(number),
-        url_scheme = request.coindata.urlscheme(payment, address, amount, is_zero, label, message);
-    $("#qrcode").empty().qrcode(url_scheme);
+        url_scheme = request.coindata.urlscheme(payment, address, amount, is_zero, label, message),
+        use_address_qr = Boolean((typeof helper !== "undefined" && helper && helper.addressqr) || (typeof get_urlparameters === "function" && (get_urlparameters().addressqr === "true" || get_urlparameters().addressqr === "1"))),
+        qr_payload = (use_address_qr && payment !== "lightning") ? address : url_scheme;
+    $("#qrcode").empty().qrcode(qr_payload);
     set_wallet_uris(url_scheme, amount);
     if (helper.lnd) { // lightning
         set_lightning_qr(amount, message);
