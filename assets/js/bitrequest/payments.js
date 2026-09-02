@@ -1572,7 +1572,7 @@ function get_payment(ccrateeuro, ccapi) {
                         <input value='" + fiat_value + "' data-xrate='" + fiat_rate + "' step='" + fiat_step + "' type='number' placeholder='" + zero_text + "'" + readonly + "/>\
                     </span> " + request.fiatcurrency + ") \
                 </div>\
-                <div id='txibreak' class='inputbreak'> " + tl("send") + " <span id='ccinputmirror' class='ccmirror mirrordiv'><span>" + crypto_placeholder + "</span><input value='" + crypto_value + "' data-xrate='" + ccrateeuro + "' step='" + crypto_step + "' type='number' placeholder='" + zero_text + "'" + readonly + "/></span> " + request.currencysymbol + " " + tl("to") + label_html + ": </div>\
+                <div id='txibreak' class='inputbreak'><span class='icon-files-empty copyaddress_btn'></span>" + tl("send") + " <span id='ccinputmirror' class='ccmirror mirrordiv'><span>" + crypto_placeholder + "</span><input value='" + crypto_value + "' data-xrate='" + ccrateeuro + "' step='" + crypto_step + "' type='number' placeholder='" + zero_text + "'" + readonly + "/></span> " + request.currencysymbol + " " + tl("to") + label_html + ": </div>\
             </div>\
             <div id='paymentaddress' class='copyinput'>" + wallet_addr + "</div><div id='paymentaddress_lnd' class='copyinput' data-type='lightning invoice'></div>\
         </div>\
@@ -2514,6 +2514,11 @@ function copy_address() {
         const address_value = glob_const.copycontent.val(),
             address_type = glob_const.copycontent.data("type");
         copy_to_clipboard(address_value, address_type);
+    });
+    $(document).on("click", ".copyaddress_btn", function() {
+        const is_lnd = $("#paymentdialogbox").attr("data-lswitch") === "lnd_ao",
+            address_node = is_lnd ? $("#paymentaddress_lnd") : $("#paymentaddress");
+        copy_to_clipboard(address_node.text(), "Address");
     });
 }
 

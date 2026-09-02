@@ -647,6 +647,10 @@
     color: #ff0000;
 }
 
+.copyaddress_btn {
+    cursor: pointer;
+}
+
 #ccinputmirror,
 #labelbttn {
     font-size: 108%;
