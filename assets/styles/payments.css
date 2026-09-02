@@ -421,11 +421,13 @@
 #paymentdialogbox.request .actionbar .openwallet {
     display: inline-block;
     float: none;
+    color: #000000 !important;
 }
 
 #paymentdialogbox.request .actionbar .openwallet_lnd {
     display: none;
     float: none;
+    color: #000000 !important;
 }
 
 #paymentdialogbox[data-lswitch="lnd_ao"].request .actionbar .openwallet_lnd {
