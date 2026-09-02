@@ -712,6 +712,12 @@
     overflow: hidden;
 }
 
+#paymentaddress:after,
+#paymentaddress_lnd:after {
+    display: none !important;
+    content: none !important;
+}
+
 #paymentdialogbox #mainccinputmirror,
 #paymentdialogbox #sharecryptowrap,
 #paymentdialogbox #sharelcinputmirror,
@@ -875,9 +881,12 @@
     font-size: 1.5em;
     vertical-align: middle;
     line-height: 0;
+    display: inline-block;
 }
 
 #payment.live #apisrc:before,
+.live #apisrc:before,
+#paymentdialogbox .live #apisrc:before,
 #paymentaddress.live ~ * #apisrc:before {
     color: #00c000;
 }
